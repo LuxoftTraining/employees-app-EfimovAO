@@ -136,12 +136,15 @@ function getAge(id) {
     return JSON.stringify(e);
    }
 
-   function runUI() {
-    showEmployees(DATA.employees);
-    fillSelect(document.getElementById("managerSelect"),
- getEmployeesOptions());
-
- }
+   function removeEmployee(id) {
+    let index = 0;
+    for (let e of DATA.employees) {
+     if (e.id===id) break;
+     index++;
+    }
+    DATA.employees.splice(index, 1);
+   }
+ 
  
 
  function clearEmployeesPlaceholder() {
@@ -152,8 +155,19 @@ function getAge(id) {
  const managerId = document.getElementById("managerSelect").value;
  setEmployeeManager(id, managerId);
 
- 
- 
+
+ function searchEmployees(name, surname, managerRef) {
+    let results = [];
+    for (let e of DATA.employees) {
+     if ((!name || e.name==name) &&
+      (!surname || e.surname==surname) &&
+      (!managerRef || e.managerRef==managerRef)) {
+      results.push(e);
+     }
+    }
+    return results;
+   }
+   
 
    
 

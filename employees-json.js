@@ -7,7 +7,9 @@ const DATA = {
        surname: "Пафнутьев",
        department: "IT"       
       },
-    {id:2,
+    
+  {
+        id:2,
         name: "Иван",
         surname: "Петров",
         department: "Director",

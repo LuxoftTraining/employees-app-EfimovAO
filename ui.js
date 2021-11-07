@@ -1,3 +1,12 @@
+   function runUI() {
+    showEmployees(DATA.employees);
+    fillSelect(document.getElementById("managerSelect"),
+ getEmployeesOptions());
+ document.getElementById("searchButton").click();
+ assignSendOnEnter("searchPane","searchEmployeesButton");
+assignSendOnEnter("addPane", "addEmployeeButton");
+
+ }
 
   function clearEmployeesPlaceholder() {
     document.getElementById(PLACEHOLDER).innerHTML = '';
@@ -35,27 +44,28 @@
    }
 
 
-   function runUI() {
-    showEmployees(DATA.employees);
- }
 
  function addEmployeeUI() {
 	let errorHTML = "";
  const name = document.getElementById("name").value;
  if (name=="") {
-  errorHTML += "- Имя сотрудника должно быть задано<br>";
- }
- const surname = document.getElementById("surname").value;
- if (surname=="") {
-  errorHTML += "- Фамилия сотрудника должна быть задана<br>";
- }
+    errorHTML += "- Имя сотрудника должно быть задано<br>";
+    document.getElementById("name").style.backgroundColor = '#FFEEEE';
+   }
+   const surname = document.getElementById("surname").value;
+   if (surname=="") {
+    errorHTML += "- Фамилия сотрудника должна быть задана<br>";
+    document.getElementById("surname").style.backgroundColor = '#FFEEEE';
+   }
+   
+
 	document.getElementById("addEmployeeFormErrorMessage")
  		.innerHTML = errorHTML;
 	if (errorHTML.length != 0) return;
 
 	addEmployee(name, surname);
  showEmployees(DATA.employees);
-}
+ }
 
    
  
@@ -65,14 +75,7 @@ function removeEmployeeUI(id) {
    }
 
    
-   function removeEmployee(id) {
-    let index = 0;
-    for (let e of DATA.employees) {
-     if (e.id===id) break;
-     index++;
-    }
-    DATA.employees.splice(index, 1);
-   }
+   
    
 
    function fillSelect(select, values, selectedValue) {
@@ -92,4 +95,48 @@ function removeEmployeeUI(id) {
     return options;
    }
 
+   function searchEmployeeUI() {
+    const name = document.getElementById("nameSearch").value;
+    const surname = document.getElementById("surnameSearch").value;
+    const managerRef = document.getElementById("managerSearch").value;
    
+    const employees  = searchEmployees(name, surname, managerRef);
+    showEmployees(employees);
+   }
+   
+   
+   function openTab(evt, id) {
+    // Определяем переменные
+    var i, tabcontent, tablinks;
+   
+    // Получаем все элементы с class="tabcontent" и прячем их
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+     tabcontent[i].style.display = "none";
+    }
+   
+    // Получаем все элементы с class="tablinks" и удаляем класс "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+     tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+   
+    // Показываем текущий таб и добавляем класс "active"
+    // на кнопку, которая открывает этот таб
+    document.getElementById(id).style.display = "block";
+    evt.currentTarget.className += " active";
+   }
+
+   function assignSendOnEnter(paneId, buttonId) {
+    let allInput = document.querySelectorAll("#"+paneId+" input");
+    for (let input of allInput) {
+     input.addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13) {
+       document.querySelector("#"+paneId+" button").click();
+      }
+     });
+    }
+   }
+   
+
