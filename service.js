@@ -136,8 +136,24 @@ function getAge(id) {
     return JSON.stringify(e);
    }
 
-   
-   
+   function runUI() {
+    showEmployees(DATA.employees);
+    fillSelect(document.getElementById("managerSelect"),
+ getEmployeesOptions());
+
+ }
+ 
+
+ function clearEmployeesPlaceholder() {
+    document.getElementById(PLACEHOLDER).innerHTML = '';
+ }
+ 
+ const id = addEmployee(name, surname);
+ const managerId = document.getElementById("managerSelect").value;
+ setEmployeeManager(id, managerId);
+
+ 
+ 
 
    
 
