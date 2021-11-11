@@ -1,34 +1,19 @@
+<html lang="en">
+
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-   <body>
-       
-    
-    <script src="employees-json.js"></script>
-<script src="service.js"></script>
-<script src="ui.js"></script>
+
+<title>Employees</title>
+
 <div id="employeesPlaceholder"></div>
-<select id="managerSelect"></select>
+<div id="addEmployeeFormErrorMessage"></div>
+
 <div class="tab">
-    <button id="searchButton" class="tablinks" 
-    onclick="openTab(event, 'searchPane')">Поиск сотрудника</button>
-    <button class="tablinks" 
-    onclick="openTab(event, 'addPane')">Добавление сотрудника</button>
+    <button id="searchButton" class="tablinks" onclick="openTab(event, 'searchPane')">Поиск сотрудника</button>
+    <button class="tablinks" onclick="openTab(event, 'addPane')">Добавление сотрудника</button>
 </div>
 
-<div>    
-    <input id="name" placeholder="Имя">
-    <input id="surname" placeholder="Фамилия">
-    <button onclick="addEmployeeUI()">Добавить сотрудника</button>
-</div>
-<div id="addEmployeeFormErrorMessage"></div>
-<form>
-    <input id="nameSearch" placeholder="Имя" size="30">
-    <input id="surnameSearch" placeholder="Фамилия" size="30">
-    <select id="managerSearch"></select>
-    <button type=button onclick="searchEmployeeUI()">Найти сотрудников</button>
-    <input type="reset" value="Сбросить форму">
-</form>
 <div id="searchPane" class="tabcontent">
     <h3>Поиск сотрудника</h3>
     <form>
@@ -37,18 +22,14 @@
 
         Поиск по менеджеру:
         <select id="managerSearch"></select>
-
         <p>
-	<button type=button onclick="searchEmployeeUI()" 
-        id="searchEmployeesButton">Найти сотрудников</button>
-
+            <button type=button onclick="searchEmployeeUI()" id="searchEmployeesButton">Найти сотрудников</button>
             <input type="reset" value="Сбросить форму">
         </p>
     </form>
-
     <div id="employeesPlaceholder"></div>
-
 </div>
+
 <div id="addPane" class="tabcontent">
     <h3>Добавление сотрудника</h3>
     <label for="name">Имя:</label>
@@ -58,20 +39,17 @@
     <input id="surname" placeholder="Фамилия">
 
     <label for="managerSelect">Менеджер:</label>
-    <select id="managerSelect"></select >
+    <select id="managerSelect"></select>
     <div id="addEmployeeFormErrorMessage"></div>
 
     <p>
         <button onclick="addEmployeeUI()" id="addEmployeeButton">
-		Добавить сотрудника</button>
+            Добавить сотрудника</button>
     </p>
 </div>
-</body>
 
-
-
-<script>
-    runUI();
-</script>
 
 <meta charset="utf-8" />
+
+<script src="./dist/bundle.js"></script>
+</html>

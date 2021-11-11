@@ -20,7 +20,9 @@ function addEmployee(name, surname) {
     }
     let id = max+1;
     DATA.employees.push({id,name,surname});
+    
     return id;
+    
    }
 
    function removeEmployee(id) {
@@ -151,9 +153,7 @@ function getAge(id) {
     document.getElementById(PLACEHOLDER).innerHTML = '';
  }
  
- const id = addEmployee(name, surname);
- const managerId = document.getElementById("managerSelect").value;
- setEmployeeManager(id, managerId);
+
 
 
  function searchEmployees(name, surname, managerRef) {
